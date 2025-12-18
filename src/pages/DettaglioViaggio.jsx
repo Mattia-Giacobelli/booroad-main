@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import viaggi from "../data/viaggi";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useSearch } from "../context/SearchContext";
@@ -8,7 +8,7 @@ export default function DettaglioViaggio() {
 
   const { id } = useParams();
 
-  const { search } = useSearch()
+  const { search, update } = useSearch()
 
   //get the single trip
   const singleTrip = viaggi.find((items) => items.id == id);
@@ -39,6 +39,8 @@ export default function DettaglioViaggio() {
 
     setTrip([{ ...trip[0], viaggiatori: removeTraveler }]);
   }
+
+  useEffect(() => { }, [update])
 
   return (
     <>

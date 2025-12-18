@@ -1,9 +1,10 @@
 import viaggi from "../data/viaggi.js";
 import { Link } from "react-router-dom";
 import { useSearch } from "../context/SearchContext";
+import { useEffect } from "react";
 
 export default function ListaViaggi() {
-  const { search } = useSearch();
+  const { search, update } = useSearch();
   const searchLower = search.toLowerCase();
 
   const viaggiFiltrati = [];
@@ -35,6 +36,9 @@ export default function ListaViaggi() {
     if (oggi > fine) return "passato";
     return "in-corso";
   }
+
+  useEffect(() => { }, [update])
+
   return (
     <>
       <div className="container">
