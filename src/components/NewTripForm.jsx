@@ -1,6 +1,8 @@
 import { useState } from "react";
+import viaggi from "../data/viaggi";
 
-export default function NewTripForm({ viaggi, setTrips }) {
+
+export default function NewTripForm() {
 
 
     //Create a varible to store form data
@@ -29,7 +31,6 @@ export default function NewTripForm({ viaggi, setTrips }) {
 
         console.log(viaggi);
 
-        setTrips(viaggi)
     }
 
     return (
