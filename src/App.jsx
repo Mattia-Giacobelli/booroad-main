@@ -6,6 +6,7 @@ import DettaglioViaggio from "./pages/DettaglioViaggio";
 import PersonDetails from "./pages/PersonDetails";
 import { SearchProvider } from "./context/SearchContext";
 import NewTripPage from "./pages/NewTripPage";
+import NewTravelerPage from "./pages/NewTravelerPage";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/:id" element={<DettaglioViaggio />} />
             <Route path="/:id/:travelerID" element={<PersonDetails />} />
             <Route path="/tripForm" element={<NewTripPage />} />
+            <Route path="/:id/travelerForm" element={<NewTravelerPage />} />
           </Route>
         </Routes>
       </SearchProvider>

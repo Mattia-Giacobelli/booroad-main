@@ -1,7 +1,11 @@
 import { useState } from "react";
+import viaggi from "../data/viaggi";
+import { useParams } from "react-router-dom";
 
-export default function NewUserForm({ viaggi, setTrips }) {
 
+export default function NewUserForm({ }) {
+
+    const { id } = useParams()
 
     //Create a varible to store form data
     const [name, setName] = useState('')
@@ -9,8 +13,6 @@ export default function NewUserForm({ viaggi, setTrips }) {
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
     const [taxIdCode, setTaxIdCode] = useState('')
-
-    const paramId = 1
 
     const newUser = {
         id: `${name}${Date.now()}`,
@@ -25,14 +27,13 @@ export default function NewUserForm({ viaggi, setTrips }) {
         e.preventDefault()
 
         viaggi.forEach(viaggio => {
-            if (viaggio.id == paramId) {
+            if (viaggio.id == id) {
                 viaggio.viaggiatori.push(newUser)
             }
         })
 
         console.log(viaggi);
 
-        setTrips(viaggi)
     }
 
     return (

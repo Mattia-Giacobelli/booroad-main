@@ -24,7 +24,7 @@ export default function DettaglioViaggio() {
           <div className="col-lg-8 col-sm-12">
             <div className="d-flex justify-content-between mb-3">
               <h2 className="fs-3">Rubrica Viaggiatori</h2>
-              <Link className="btn btn-primary">Aggiungi Viaggiatore</Link>
+              <Link to={`/${id}/travelerForm`} className="btn btn-primary">Aggiungi Viaggiatore</Link>
             </div>
             <table className="table table-striped">
               <thead>
