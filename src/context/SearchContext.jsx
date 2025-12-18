@@ -4,10 +4,10 @@ const SearchContext = createContext();
 
 export function SearchProvider({ children }) {
   const [search, setSearch] = useState("");
-  const [update, setUpdate] = useState(false);
+
 
   return (
-    <SearchContext.Provider value={{ search, setSearch, update, setUpdate }}>
+    <SearchContext.Provider value={{ search, setSearch }}>
       {children}
     </SearchContext.Provider>
   );

@@ -4,7 +4,7 @@ import { useSearch } from "../context/SearchContext";
 import { useEffect } from "react";
 
 export default function ListaViaggi() {
-  const { search, update } = useSearch();
+  const { search } = useSearch();
   const searchLower = search.toLowerCase();
 
   const viaggiFiltrati = [];
@@ -37,7 +37,7 @@ export default function ListaViaggi() {
     return "in-corso";
   }
 
-  useEffect(() => { }, [update])
+  useEffect(() => { }, [viaggi])
 
   return (
     <>

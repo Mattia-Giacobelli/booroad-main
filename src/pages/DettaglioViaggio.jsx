@@ -8,7 +8,7 @@ export default function DettaglioViaggio() {
 
   const { id } = useParams();
 
-  const { search, update } = useSearch()
+  const { search } = useSearch()
 
   //get the single trip
   const singleTrip = viaggi.find((items) => items.id == id);
@@ -40,7 +40,7 @@ export default function DettaglioViaggio() {
     setTrip([{ ...trip[0], viaggiatori: removeTraveler }]);
   }
 
-  useEffect(() => { }, [update])
+  useEffect(() => { }, [viaggi])
 
   return (
     <>

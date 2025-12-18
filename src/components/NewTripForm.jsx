@@ -5,7 +5,6 @@ import { useSearch } from "../context/SearchContext";
 
 export default function NewTripForm() {
 
-    const { setUpdate } = useSearch()
 
     //Create a varible to store form data
     const [destination, setDestination] = useState('')
@@ -33,7 +32,7 @@ export default function NewTripForm() {
 
         console.log(viaggi);
 
-        setUpdate(true)
+
     }
 
     return (

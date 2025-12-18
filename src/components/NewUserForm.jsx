@@ -8,7 +8,6 @@ export default function NewUserForm({ }) {
 
     const { id } = useParams()
 
-    const { setUpdate } = useSearch()
 
     //Create a varible to store form data
     const [name, setName] = useState('')
@@ -37,7 +36,6 @@ export default function NewUserForm({ }) {
 
         console.log(viaggi);
 
-        setUpdate(true)
 
     }
 
