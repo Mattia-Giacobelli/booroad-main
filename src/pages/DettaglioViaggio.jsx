@@ -1,16 +1,39 @@
 import { useState } from "react";
 import viaggi from "../data/viaggi";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import { useSearch } from "../context/SearchContext";
 /* import { useSearch } from "../context/SearchContext"; */
 
 export default function DettaglioViaggio() {
+
   const { id } = useParams();
 
-  const filter = viaggi.filter((items) => items.id == id);
-  const [trip, setTrip] = useState(filter);
+  const { search } = useSearch()
+
+  //get the single trip
+  const singleTrip = viaggi.find((items) => items.id == id);
+
+  //Transform search to lowercase
+  const searchLower = search.toLowerCase();
+
+  //Search logic
+
+  const viaggiatoriFiltrati = [];
+
+  singleTrip.viaggiatori.forEach((viaggiatore) => {
+    if (
+      `${viaggiatore.nome} ${viaggiatore.cognome}`
+        .toLowerCase()
+        .includes(searchLower)
+    ) {
+      viaggiatoriFiltrati.push(viaggiatore);
+    }
+  });
+
+
 
   function handleTrash(codiceFiscale) {
-    const removeTraveler = trip[0].viaggiatori.filter(
+    const removeTraveler = singleTrip.viaggiatori.filter(
       (viaggiatore) => viaggiatore.codiceFiscale !== codiceFiscale
     );
 
@@ -44,7 +67,7 @@ export default function DettaglioViaggio() {
                 </tr>
               </thead>
               <tbody>
-                {trip[0].viaggiatori.map((viaggiatore) => (
+                {viaggiatoriFiltrati.map((viaggiatore) => (
                   <tr key={viaggiatore.codiceFiscale}>
                     <td className="align-middle text-center">
                       {viaggiatore.nome}

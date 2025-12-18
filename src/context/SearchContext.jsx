@@ -4,9 +4,10 @@ const SearchContext = createContext();
 
 export function SearchProvider({ children }) {
   const [search, setSearch] = useState("");
+  const [trip, setTrip] = useState({});
 
   return (
-    <SearchContext.Provider value={{ search, setSearch }}>
+    <SearchContext.Provider value={{ search, setSearch, trip, setTrip }}>
       {children}
     </SearchContext.Provider>
   );
