@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useSearch } from "../context/SearchContext";
-/* import { useSearch } from "../context/SearchContext"; */
+import viaggi from "../data/viaggi";
 
 export default function DettaglioViaggio() {
 
@@ -36,7 +36,11 @@ export default function DettaglioViaggio() {
       (viaggiatore) => viaggiatore.codiceFiscale !== codiceFiscale
     );
 
-    setTrip([{ ...trip[0], viaggiatori: removeTraveler }]);
+    setTrips(
+      trips.map((trip) =>
+        trip.id == id ? { ...trip, viaggiatori: removeTraveler } : trip
+      )
+    );
   }
 
   useEffect(() => { }, [trips])

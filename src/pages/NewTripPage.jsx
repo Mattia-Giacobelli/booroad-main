@@ -5,7 +5,9 @@ export default function NewTripPage() {
 
     return (
         <>
-            <NewTripForm />
+            <div className="container my-5">
+                <NewTripForm />
+            </div>
         </>
     )
 }
