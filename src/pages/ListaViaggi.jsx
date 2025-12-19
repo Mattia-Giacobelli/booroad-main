@@ -6,26 +6,31 @@ import { useEffect } from "react";
 export default function ListaViaggi() {
   const { search } = useSearch();
   const searchLower = search.toLowerCase();
+  let viaggiFiltrati = [];
 
-  const viaggiFiltrati = [];
+  function getFilteredTrips() {
 
-  viaggi.forEach((viaggio) => {
-    let viaggiatoriMatch = [];
 
-    viaggio.viaggiatori.forEach((viaggiatore) => {
-      if (
-        `${viaggiatore.nome} ${viaggiatore.cognome}`
-          .toLowerCase()
-          .includes(searchLower)
-      ) {
-        viaggiatoriMatch.push(viaggiatore);
+    viaggi.forEach((viaggio) => {
+      let viaggiatoriMatch = [];
+
+      viaggio.viaggiatori.forEach((viaggiatore) => {
+        if (
+          `${viaggiatore.nome} ${viaggiatore.cognome}`
+            .toLowerCase()
+            .includes(searchLower)
+        ) {
+          viaggiatoriMatch.push(viaggiatore);
+        }
+      });
+
+      if (viaggiatoriMatch.length > 0) {
+        viaggiFiltrati.push(viaggio);
       }
     });
 
-    if (viaggiatoriMatch.length > 0) {
-      viaggiFiltrati.push(viaggio);
-    }
-  });
+  }
+  getFilteredTrips()
 
   function getStatoViaggio(dataInizio, dataFine) {
     const oggi = new Date();
@@ -37,7 +42,12 @@ export default function ListaViaggi() {
     return "in-corso";
   }
 
-  useEffect(() => { }, [viaggi])
+  //useEffect(getFilteredTrips, [viaggi])
+  useEffect(() => {
+    getFilteredTrips()
+    console.log(viaggiFiltrati);
+
+  }, [viaggi])
 
   return (
     <>
