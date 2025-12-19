@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import viaggi from "../data/viaggi";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useSearch } from "../context/SearchContext";
 /* import { useSearch } from "../context/SearchContext"; */
@@ -8,10 +7,10 @@ export default function DettaglioViaggio() {
 
   const { id } = useParams();
 
-  const { search } = useSearch()
+  const { search, trips, setTrips } = useSearch()
 
   //get the single trip
-  const singleTrip = viaggi.find((items) => items.id == id);
+  const singleTrip = trips.find((items) => items.id == id);
 
   //Transform search to lowercase
   const searchLower = search.toLowerCase();
@@ -40,7 +39,7 @@ export default function DettaglioViaggio() {
     setTrip([{ ...trip[0], viaggiatori: removeTraveler }]);
   }
 
-  useEffect(() => { }, [viaggi])
+  useEffect(() => { }, [trips])
 
   return (
     <>

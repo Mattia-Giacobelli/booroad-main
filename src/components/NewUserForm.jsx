@@ -1,10 +1,11 @@
 import { useState } from "react";
-import viaggi from "../data/viaggi";
 import { useParams } from "react-router-dom";
 import { useSearch } from "../context/SearchContext";
 
 
 export default function NewUserForm({ }) {
+
+    const { trips, setTrips } = useSearch();
 
     const { id } = useParams()
 
@@ -28,13 +29,17 @@ export default function NewUserForm({ }) {
     function handleFormSubmit(e) {
         e.preventDefault()
 
-        viaggi.forEach(viaggio => {
+        trips.forEach(viaggio => {
             if (viaggio.id == id) {
                 viaggio.viaggiatori.push(newUser)
             }
         })
 
-        console.log(viaggi);
+        setName("")
+        setLastName("")
+        setPhone("")
+        setEmail("")
+        setTaxIdCode("")
 
 
     }
