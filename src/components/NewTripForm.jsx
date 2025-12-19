@@ -1,5 +1,4 @@
 import { useState } from "react";
-import viaggi from "../data/viaggi";
 import { useSearch } from "../context/SearchContext";
 
 
@@ -14,6 +13,8 @@ export default function NewTripForm() {
 
 
 
+    const { addTrip } = useSearch();
+
     const newTrip = {
         id: `${destination}${Date.now()}`,
         destinazione: destination,
@@ -22,17 +23,14 @@ export default function NewTripForm() {
         viaggiatori: []
     }
 
-    console.log(viaggi);
-
-
     function handleFormSubmit(e) {
         e.preventDefault()
 
-        viaggi.push(newTrip)
+        addTrip(newTrip)
 
-        console.log(viaggi);
-
-
+        setDestination("")
+        setStartDate("")
+        setEndDate("")
     }
 
     return (

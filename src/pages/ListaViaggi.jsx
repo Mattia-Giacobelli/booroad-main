@@ -1,17 +1,20 @@
-import viaggi from "../data/viaggi.js";
 import { Link } from "react-router-dom";
 import { useSearch } from "../context/SearchContext";
 import { useEffect } from "react";
 
 export default function ListaViaggi() {
-  const { search } = useSearch();
-  const searchLower = search.toLowerCase();
+  const { search, trips } = useSearch();
+  const searchLower = search.toLowerCase().trim();
+
   let viaggiFiltrati = [];
 
   function getFilteredTrips() {
+    if (!searchLower) {
+      viaggiFiltrati = trips;
+      return;
+    }
 
-
-    viaggi.forEach((viaggio) => {
+    trips.forEach((viaggio) => {
       let viaggiatoriMatch = [];
 
       viaggio.viaggiatori.forEach((viaggiatore) => {
@@ -28,9 +31,9 @@ export default function ListaViaggi() {
         viaggiFiltrati.push(viaggio);
       }
     });
-
   }
-  getFilteredTrips()
+
+  getFilteredTrips();
 
   function getStatoViaggio(dataInizio, dataFine) {
     const oggi = new Date();
@@ -42,12 +45,10 @@ export default function ListaViaggi() {
     return "in-corso";
   }
 
-  //useEffect(getFilteredTrips, [viaggi])
   useEffect(() => {
-    getFilteredTrips()
+    getFilteredTrips();
     console.log(viaggiFiltrati);
-
-  }, [viaggi])
+  }, [trips, searchLower]);
 
   return (
     <>
